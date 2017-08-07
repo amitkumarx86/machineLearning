@@ -4,7 +4,7 @@ This project is a research project which computes whether two movie plots are re
 
 ## Motivation
 
-Information can less readable or much complex to understand which reading the narration. But using this project we can reach a poing where we can compute the less complex narration.
+We can find out similar narrations.
 
 ## Installation
 
