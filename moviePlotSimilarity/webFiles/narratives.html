@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Narratives</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/portfolio-item.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script >
+    // function for disambiguation
+    function postRequestForAnnotator() {   
+        // server ip : 192.168.30.32
+    	$("#submit").prop("disabled", true);
+        $(".contentAnnotator").html("<img src='img/loading.gif' style='width: 1%;padding-top:3px;'/>");
+        $.post("http://localhost:8080/annotate/webapi/corefannotator        ",
+        {
+          
+          coRefText1 : $('#coRefText1').val(),
+          coRefText2 : $('#coRefText2').val(),
+          coRefText3 : $('#coRefText3').val()
+         
+        
+        },
+        function(data,status){
+            // alert("Data: " + data + "\nStatus: " + status);
+            $(".contentAnnotator").html(data);
+            $("#submit").prop("disabled",false);
+        });
+    }
+
+</script>
+ 
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<style type="text/css">
+    textarea { border: none; padding:10px;}
+</style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Narratives</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Annotation</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Compare Movie Plots
+
+
+                    <h2>Input</h2>
+                    <table width="888" >
+                    <tr>
+                    <th style="padding-left: 170px;">Plot1</th>
+                    <th style="padding-left: 170px;">Plot2</th>
+                    <th     style="padding-left: 170px;">Plot3</th>
+                    </tr>
+                    <tr>
+                    <td>
+                    	<textarea rows="20" cols="40"   name="coRefText1" id="coRefText1" type="text" required placeholder="In Venice, Italy, a team of expert theives pulls a daring heist of 35 million dollars in bars of gold. One of the theives betrays his companions and swipes the gold for himself. One year later, in Los Angeles, the surviving team members create a smart and devious plan to steal back the gold and get their revenge on the traitor."></textarea>
+                    </td>
+                    <td>
+                    	<textarea rows="20" cols="40" name="coRefText2" id="coRefText2" type="text" required placeholder="A group of players consisting of a con-man, a con-woman, an illusionist, explosives expert, professional hacker and disguise master have a mission to steal gold for their dreams. Their plan succeeds but are double-crossed by their own member. Through losses and a new ally, they try to have their revenge and gold back. But will they succeed this time?"></textarea>
+                    </td>
+                    <td>
+                    	<textarea rows="20" cols="40" 	name="coRefText3" id="coRefText3" type="text" required placeholder="Jai and Ali are back as the buddy cops on their toughest job so far. Mr.A is an international thief who has planned to steal a priceless artifact in Mumbai and the police have got to nab him. But Mr.A manages to steal the artifact and elude the police. He finds his match in Sunehri and they form a partnership. They move on to Rio for their next job, with Jai and Ali hot on their trail. Mr.A whose actual name is Aryan, and Sunehri are drawn towards each other but little does Aryan know of Sunehri's little secret" ></textarea>
+                    	
+                    </td>
+                    </tr>
+                    </table>
+                    
+                    
+                    <br><button type="submit" id="submit" onclick="postRequestForAnnotator()" >Analyze</button>
+                    <h1>Result:</h1>
+                    <div class="contentAnnotator"></div>
+                  
+
+                    
+                    
+                     
+
+
+                </h1>
+            </div>
+        </div>
+
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p> </p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
